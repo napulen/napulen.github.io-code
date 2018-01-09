@@ -1,0 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
+p, h2 {
+	color: white;
+}
