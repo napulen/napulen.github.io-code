@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media (max-width:800px) {
@@ -77,7 +78,7 @@ body {
 #sidebar ul li a {
   font-size: 200%;
   text-decoration: none;
-  -webkit-transition: opacity 1s;
+  -webkit-transition: opacity 1s;  
 }
 
 #sidebar ul li a:link {
@@ -90,20 +91,13 @@ body {
   opacity: 0.5;
 }
 
-#sidebar ul li a:hover {
-  font-size: 200%;
+#sidebar ul li a:hover {  
   opacity: 1.0;
-}
-
-#sidebar ul li a:active {
-  font-size: 200%;
 }
 
 #maincontent {
   border: none;
-  height: 100%;
-  color: white;
-  text-align:right;
+  height: 500px;  
 }
 
 #footnote {
