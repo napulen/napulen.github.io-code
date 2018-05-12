@@ -7,9 +7,9 @@ function() {
 	return false;
 };
 
-document.getElementById("cv").onclick = 
+document.getElementById("resume").onclick = 
 function() {
-	contentFrame.src = "cv/cv.html";
+	contentFrame.src = "resume/resume.html";
 	return false;
 };
 
