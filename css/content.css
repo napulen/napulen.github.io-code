@@ -1,7 +1,38 @@
 * {
   box-sizing: border-box;
+  overflow: hidden;  
+  font-family: 'Open Sans', sans-serif;
 }
 
-p, h2 {
+h2 {
+	font-size: x-large;
+	color: lightblue;
+}
+
+p {
+	font-size: large;
 	color: white;
+}
+
+a {
+	text-decoration: none;
+	-webkit-transition: opacity 1s;
+}
+
+a:link {
+	text-decoration: none;
+	color: lightgreen;
+	opacity: 0.5;
+}
+
+a:visited{
+	text-decoration: none;
+	color: lightgreen;
+	opacity: 0.5;
+}
+
+a:hover {	
+	text-decoration: none;
+	color: lightgreen;
+	opacity: 1.0;
 }
