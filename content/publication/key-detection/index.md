@@ -54,7 +54,7 @@ url_code = "https://github.com/napulen/justkeydding"
 # url_project = "#"
 # url_slides = "#"
 # url_video = "#"
-url_poster = "https://napulen.github.io/files/key-detection_poster.pdf"
+url_poster = "https://napulen.github.io/posters/key-detection.pdf"
 # url_source = "#"
 
 # Custom links (optional).
