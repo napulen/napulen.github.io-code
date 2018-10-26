@@ -300,6 +300,11 @@ enableGitInfo = false
   weight = 4
 
 [[menu.main]]
+  name = "Tutorials"
+  url = "/tutorial/"
+  weight = 5
+
+[[menu.main]]
   name = "Contact"
   url = "#contact"
   weight = 6
