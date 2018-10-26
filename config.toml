@@ -9,7 +9,7 @@
 baseurl = "/"
 
 # Title of your site
-title = "Academic"
+title = "Néstor Nápoles López"
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
@@ -26,7 +26,7 @@ paginate = 10
 disqusShortname = ""
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = ""
+googleAnalytics = "UA-127095189-1"
 
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
@@ -51,24 +51,25 @@ enableGitInfo = false
   # AUTHOR SETUP
 
   # Your details.
-  name = "Lena Smith"
-  role = "Professor of Artificial Intelligence"
+  name = "Néstor Nápoles López"
+  role = "PhD student in Music Technology"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Stanford University", url = "" } ]
+  organizations = [ { name = "McGill University", url = "http://ddmal.music.mcgill.ca/" } ]
+
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
 
   # Details for the Contact Widget
-  email = "test@example.org"
-  address = "Building 1 Room 1, Stanford University, California, 90210, USA"
-  office_hours = "Monday 10:00 to 13:00 or email for appointment"
-  phone = "888 888 88 88"
-  skype = "echo123"
-  telegram = ""
-  keybase = ""  # Your keybase.io username.
+  email = "nestor.napoleslopez@mail.mcgill.ca"
+  address = "Distributed Digital Music Archives and Libraries Lab, Music Technology Area, McGill University"
+  # office_hours = "Monday 10:00 to 13:00 or email for appointment"
+  # phone = "888 888 88 88"
+  # skype = "echo123"
+  # telegram = ""
+  # keybase = ""  # Your keybase.io username.
 
   # Discussion link (e.g. link to a forum, mailing list, or chat).
   #   Uncomment line below to use.
@@ -99,7 +100,7 @@ enableGitInfo = false
 
   # Color theme.
   #   Choose from `default`, `ocean`, `forest`, `dark`, `apogee`, `1950s`, `coffee`, `cupcake`.
-  color_theme = "default"
+  color_theme = "dark"
 
   # Font style.
   #   Choose from `default`, `classic`, or `playfair`.
@@ -112,7 +113,7 @@ enableGitInfo = false
   sharing_image = ""
 
   # Twitter username (without @). Used when a vistor shares your site on Twitter.
-  twitter = ""
+  twitter = "napulen"
 
   # Diplay a logo in navigation bar rather than title (optional).
   #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
@@ -193,7 +194,8 @@ enableGitInfo = false
     'Manuscript',  # 3
     'Report',  # 4
     'Book',  # 5
-    'Book section'  # 6
+    'Book section',  # 6
+    'Poster' # 7
   ]
 
   # Configuration of talk pages.
@@ -244,25 +246,25 @@ enableGitInfo = false
   #
   #   Full list: https://jpswalsh.github.io/academicons/
 
-  [[params.social]]
-    icon = "envelope"
-    icon_pack = "fas"
-    link = "mailto:test@example.org"
+  # [[params.social]]
+  #   icon = "envelope"
+  #   icon_pack = "fas"
+  #   link = "mailto:nestor.napoleslopez@mail.mcgill.ca"
 
   [[params.social]]
     icon = "twitter"
     icon_pack = "fab"
-    link = "//twitter.com/GeorgeCushen"
+    link = "//twitter.com/napulen"
 
   [[params.social]]
     icon = "google-scholar"
     icon_pack = "ai"
-    link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+    link = "https://scholar.google.ca/citations?user=flGxOu0AAAAJ"
 
   [[params.social]]
     icon = "github"
     icon_pack = "fab"
-    link = "//github.com/gcushen"
+    link = "//github.com/napulen"
 
   # Link to a PDF of your resume/CV from the About widget.
   # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
