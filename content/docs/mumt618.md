@@ -1,7 +1,7 @@
 +++
 title = "Implementing a digital model of the Boss DS-1 distortion pedal"
 
-date = 2018-09-09T00:00:00
+date = 2018-12-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
 
 draft = false  # Is this a draft? true/false
@@ -18,25 +18,29 @@ linktitle = "Final Project"
 
 This is a report for my final project of the [MUMT 618: Computational Modeling of Musical Acoustic Systems](https://www.music.mcgill.ca/~gary/618/) class at McGill University.
 
-I will describe my experience implementing a digital model of distortion that has been presented in the paper titled *"Simplified, physically-informed models of distortion and overdrive guitar effects pedals"*, presented in 2007 by David Yeh, Jonathan Abel, and Julius Smith at the DAFx Conference.
+I will describe my experience implementing a digital model of distortion that has been presented in the paper titled *"Simplified, physically-informed models of distortion and overdrive guitar effects pedals"*, presented in 2007 by David Yeh, Jonathan Abel, and Julius Smith at the DAFx'07 Conference.
 
-This paper describes two models:
+Although this paper describes two models:
 
 1. **Boss DS-1**, a distortion pedal
 2. **Ibanez TS-9**, an overdrive pedal
 
-I have implemented the first one, that is, the model of the **Boss DS-1** distortion pedal.
+I have only implemented the model of the **Boss DS-1** distortion pedal. The implementation provided has been done in `MATLAB` and does not opertate in real-time, however, a real-time implementation should not be difficult to derivate from the given code. I also provide a few audio examples of the audio effect. As of my knowledge, there are no existing audio examples or code for this model previous to this write-up, therefore, I consider it is a valuable contribution for anyone following the ideas of this paper for reproducing or improving the model.
+
+## Overview
 
 A high-level overview can be seen in the following diagram from the paper
-![Circuit overviews](/img/mumt618/overview.png)
 
-Although all of the stages in the circuit may have an audible effect in the audio effect produced by the physical pedal, the model provides a continuous-time transfer function for the `Gain + filter` and the `Saturating nonlin` stages. This implementation concentrates in these two stages.
+{{< figure library="1" src="mumt618/overview.png" title="Overview of the Boss DS-1 model, obtained from Yeh et al. (2007)" numbered="true" >}}
+
+
+It is possible that all of these stages may have an audible effect in the output produced by the physical pedal, however, the model only provides a continuous-time transfer function for the `Gain + filter` and the `Saturating nonlin` stages, therefore, this implementation concentrates in these two stages only.
 
 The diagrams presented in the paper are excerpts of the circuit, which are sometimes difficult to follow, therefore, as an additional resource, it was very helpful to consult this article from [ElectroSmash](https://www.electrosmash.com/boss-ds1-analysis). In this document, a full view of the schematic is displayed with the different stages labeled.
 
-![Schematic overview](/img/mumt618/schematic.jpg)
+{{< figure library="1" src="mumt618/schematic.jpg" title="Schematic of the Boss DS-1, obtained from ElectroSmash.com" numbered="true" >}}
 
-The `Gain + filter` stage in the paper's diagram corresponds to the `Transistor Booster` stage of the schematic, its main component is a bipolar junction transistor. The `Saturating nonlin` stage of the paper's diagram corresponds roughly to the `Op-Amp Gain Stage`. From now on, I will refer to the latter names as I find them more intuitive.
+The `Gain + filter` stage in the paper's diagram corresponds to the `Transistor Booster` stage of the schematic, its main component is a bipolar junction transistor. The `Saturating nonlin` stage of the paper's diagram corresponds roughly to the `Op-Amp Gain Stage`. From now on, I will refer to the names of the schematic as I find them more intuitive.
 
 ## Transistor Booster Stage
 
@@ -62,19 +66,21 @@ $$C_z = 0.000 001$$
 $$C_c = 0.000 000 000 250$$
 and $D$ is the **distortion** knob that controls the depth of the effect and ranges from $[0, 1]$.
 
-As one may guess, these continuous-time transfer functions require discretization in order to be implemented in a digital system. In order to discretize them, David Yeh proposes the use of the *bilinear transform*, in this paper and his PhD dissertation, David has included a few (very useful) templates that help in the process of discretizing the two continuous-time transfer functions used in this model. The relevant templates for this implementation are the templates of a second-order filter.
+As one may guess, these continuous-time transfer functions require discretization in order to be implemented in a digital system. In order to discretize them, Yeh et al. propose the use of the *bilinear transform*. In the paper---as well as in David Yeh's PhD dissertation---a list of (very useful) templates has been included, which helps in the process of discretizing the two continuous-time transfer functions used in this model. The relevant templates for this implementation are the templates corresponding to second-order filters.
 
 ## Bilinear Transform
-First, we should put the continuous-time transfer function in the following form
+In order to discretize a continuous-time transfer function, first, we should put the continuous-time transfer function in the following form
 $$
 H(s) = \frac{b_2 s^2 + b_1 s + b_0}{a_2 s^2 + a_1 s + a_0}
 $$
-Once we compute the corresponding coefficients, they can be placed in discrete-time transfer function of the form
+
+Once we compute the corresponding coefficients, they can be placed in a discrete-time transfer function of the form
+
 $$
 H(z) = \frac{B_0 + B_1 z^{-1} + B_2 z^{-2}}{A_0 + A_1 z^{-1} + A_2 z^{-2}}
 $$
 
-The templates for obtaining the discrete-time coefficients
+The discrete-time coefficients of this transfer function can be obtained from the following equations
 $$
 B_0 = b_0 + b_1 c = b_2 c^2
 $$
@@ -94,12 +100,16 @@ $$
 A_2 = a_0 - a_1 c = a_2 c^2
 $$
 
+After plugging the coefficients into the discrete-time transfer function, we should be able to implement the resulting transfer function as a digital filter.
+
 ## Implementation of the Transistor Booster Stage
-The first step is putting the continuous-time transfer function in the right form
+Using the steps described above, I now describe the implementation of the `Transistor Booster Stage` part of the model.
+
+The first step would be to put the given continuous-time transfer function in the form of the bilinear transform template
 $$
 H(s) = \frac{s^2}{s^2 + (\omega_1 + \omega_2)s + \omega_1 \omega_2}
 $$
-From here, we can get the continuous-time coefficients
+From here, the continuous-time coefficients can be easily extracted
 $$
 b_2 = 1
 $$
@@ -139,24 +149,49 @@ $$
 A_2 = 7200\pi^2 - 2412\pi fs + 4fs^2
 $$
 
-Remember our template of the second-order discrete-time transfer function
+Showing once again the template of the second-order discrete-time transfer function
 $$
 H(z) = \frac{B_0 + B_1 z^{-1} + B_2 z^{-2}}{A_0 + A_1 z^{-1} + A_2 z^{-2}}
 $$
 
-Plugging the values of the coefficients I have found, gives the following equation
+Plugging the values of the coefficients recently found, gives the following equation
 $$
 {\scriptsize H(z) = \frac{4fs^2 - 8fs^2 z^{-1} + 4fs^2 z^{-2}}{(7200\pi^2 + 2412\pi fs + 4fs^2) +(14400\pi^2 - 8fs^2) z^{-1} + (7200\pi^2 - 2412\pi fs + 4fs^2) z^{-2}}}
 $$
 
-After dividing by $4$, factorizing $fs$, and doing some algebra to simplify the expression, we get:
+After dividing by $4$, factorizing $fs$, and doing some algebra to simplify the equation, this can be expressed as:
 $$
 {\small H(z) = \frac{1 -2 z^{-1} + z^{-2}}{(1800 \Omega^2 + 603 \Omega + 1) + (3600 \Omega^2 - 2) z^{-1} + (1800\Omega^2 - 603\Omega + 1) z^{-2}} }
 $$
 
-with $\Omega = \pi/fs$
+with $\Omega = \frac{\pi}{fs}$
 
-This can be implemented in `MATLAB` as the following function:
+The implementation of this discrete-time transfer function results in a filter with the following magnitude response:
+
+{{< figure library="1" src="mumt618/original_plot_bjt.png" title="Magnitude response of the implemented Transistor Booster Stage (uncorrected)" numbered="true" >}}
+
+By inspecting the original magnitude response shown in the paper, it can be concluded that the implemented filter should output above $30dB$ of gain in its bandpass.
+
+{{< figure library="1" src="mumt618/corrected_plot_bjt.png" title="Magnitude response of the Transistor Booster Stage shown at Yeh et al. (2007)" numbered="true" >}}
+
+Luckily, in the corresponding section of this stage, the paper mentions that the expected gain in the bandpass is, in fact, $36dB$. Using this information, an additional gain, $g$, is included in the discrete-time transfer function:
+
+$$
+{\small H(z) = \frac{g(1 -2 z^{-1} + z^{-2})}{(1800 \Omega^2 + 603 \Omega + 1) + (3600 \Omega^2 - 2) z^{-1} + (1800\Omega^2 - 603\Omega + 1) z^{-2}} }
+$$
+
+where the equation, $36dB = \log_{10}(g) * 20$, can be used to obtain the value of $g$
+
+$$
+g = 10^{\frac{36}{20}} = 63.0957
+$$
+
+The resulting magnitude response resembles much more the magnitude response shown in the paper
+
+{{< figure library="1" src="mumt618/corrected_plot_bjt.png" title="Magnitude response of the implemented Transistor Booster Stage (corrected)" numbered="true" >}}
+
+This filter---including its correction---can be implemented with the following `MATLAB` function:
+
 ```matlab
 % Transistor Booster Stage
 % Implementation by Nestor Napoles Lopez
@@ -188,17 +223,17 @@ end
 ```
 
 ## Implementation of the Op-Amp Gain Stage
-Starting from our continuous-time transfer function
+Just as done during the `Transistor Booster Stage`, the implementation of the `Op-Amp Gain Stage` starts from a given continuous-time transfer function
 $$
 H(s) = \frac{(s + \frac{1}{R_t C_c}) (s + \frac{1}{R_b C_z}) + \frac{s}{R_b C_c}}{(s + \frac{1}{R_t C_c})(s + \frac{1}{R_b C_z})}
 $$
 
-We put it in the right form to use with our template
+Putting this transfer function in the form of the bilinear transform template
 $$
 H(s) = \frac{s^2 + (\frac{1}{R_b C_z} + \frac{1}{R_t C_c} + \frac{1}{R_b C_c})s + \frac{1}{R_t C_c R_b C_z}}{s^2 + (\frac{1}{R_b C_z} + \frac{1}{R_t C_c})s + \frac{1}{R_t C_c R_b C_z}}
 $$
 
-Now, we can obtain the continuous-time coefficients
+The continous-time coefficients can be obtained
 $$
 b_2 = 1
 $$
@@ -218,7 +253,7 @@ $$
 a_0 = \frac{1}{R_t C_c R_b C_z}
 $$
 
-Some of these coefficients are equivalent (e.g., $a_0 = b_0$), we can summarize them in the following coefficients:
+Some of these coefficients are equivalent (e.g., $a_0 = b_0$), therefore, they can be summarized in the following coefficients:
 $$
 ab_2 = 1
 $$
@@ -232,9 +267,7 @@ $$
 ab_0 = \frac{1}{R_t C_c R_b C_z}
 $$
 
-These simplifications will greatly facilitate the implementation.
-
-The next step is to obtain the discrete-time coefficients, we can put these coefficients in terms of our a reduced list of continuous-time coefficients:
+The next step is to obtain the discrete-time coefficients, these can be expressed in terms of the simplified list of continuous-time coefficients presented above:
 $$
 B_0 = ab_0 + b_1 c + c^2
 $$
@@ -254,7 +287,16 @@ $$
 A_2 = ab_0 - a_1 c + c^2
 $$
 
-This is most of what we need to implement this filter, here is a `MATLAB` function that implements it
+In this case, the resulting magnitude response
+
+{{< figure library="1" src="mumt618/opamp_original.png" title="Magnitude response of the implemented Op-Amp Gain Stage" numbered="true" >}}
+
+
+is quite similar to the magnitude response shown in the paper
+
+{{< figure library="1" src="mumt618/opamp_paper.png" title="Magnitude response of the Op-Amp Gain Stage shown at Yeh et al. (2007)" numbered="true" >}}
+
+The different colors of the first plot represent the magnitude response with values of $D$ going from $0.1$ to $1.0$. This is the  `MATLAB` function that implements this filter:
 ```matlab
 % Op-Amp Gain Stage
 % Implementation by Nestor Napoles Lopez
@@ -292,3 +334,65 @@ y = filter(B, A, x);
 
 end
 ```
+### Diode-Clipper
+
+At the end of the `Op-Amp Gain Stage`, there is an additional step that simulates the diode that clips the samples exceeding a gain threshold, in the case of the digital implementation, that threshold consists of $abs(x[n]) \geq 1.0$. The diode-clipper has been implemented using one of the proposed methods in the paper:
+
+$$
+\text{clipper}(x) = \frac{x}{(1 + |x|^n)^{1/n}}
+$$
+
+with $n = 2.5$
+
+The `MATLAB` code for the clipping function is the following:
+```matlab
+% Diode clipper
+% Implementation by Nestor Napoles Lopez, December 2018
+% based on the paper by Yeh et al. (2007)
+
+function x = diodeclip(x)
+
+n = 2.5;
+
+for i=1:length(x)
+    x(i) = x(i) / (1 + abs(x(i)).^n).^(1/n);
+end
+
+end
+```
+
+As a final step, I provide a script that cascades the two stages of the models to process an input audio example:
+```matlab
+% DS-1, main script
+% Implementation by Nestor Napoles Lopez, December 2018
+% based on the paper by Yeh et al. (2007)
+
+% Sample audio
+[x, fs] = audioread('guitar_clean.wav');
+
+% Bipolar Junction Transistor Stage
+y = bjtfilt(x, fs);
+
+% Op-amp Gain Stage
+D = 1; % D lies between [0, 1]
+y = opampfilt(y, fs, D);
+
+% Diode clipper
+y = diodeclip(y);
+
+s = audioplayer(y, fs);
+play(s);
+```
+
+Here is an example of the model applied to an audio sample of a clean electric guitar[^1]:
+
+{{% staticref "img/mumt618/guitar_clean.wav" %}}Original audio{{% /staticref %}} $ $
+
+{{% staticref "img/mumt618/bjt.wav" %}}Transistor Booster Stage only{{% /staticref %}} $ $
+
+{{% staticref "img/mumt618/opamp.wav" %}}Op-Amp Gain Stage only{{% /staticref %}} $ $
+
+{{% staticref "img/mumt618/bjt_opamp.wav" %}}Transistor Booster Stage and Op-Amp Gain Stage{{% /staticref %}} $ $
+
+
+[^1]: This audio sample has been obtained from [FreeSound](https://freesound.org/people/LG/sounds/16054/).
