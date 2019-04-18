@@ -19,17 +19,17 @@ weight = 5
 # List your qualifications (such as academic degrees).
 [[education.courses]]
   course = "PhD in Music Technology"
-  institution = "McGill University"
+  institution = "McGill University, Montréal"
   year = 2022
 
 [[education.courses]]
   course = "MSc in Sound and Music Computing"
-  institution = "Universitat Pompeu Fabra"
+  institution = "Universitat Pompeu Fabra, Barcelona"
   year = 2017
 
 [[education.courses]]
   course = "Licenciatura en Informática"
-  institution = "Universidad de Guadalajara"
+  institution = "Universidad de Guadalajara, Guadalajara"
   year = 2012
 
 +++
