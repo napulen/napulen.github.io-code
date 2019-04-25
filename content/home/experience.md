@@ -1,17 +1,16 @@
 +++
 # Experience widget.
-widget = "experience"  # Do not modify this line!
+widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
+headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
+weight = 40  # Order that this section will appear.
 
 title = "Experience"
 subtitle = ""
 
-# Order that this section will appear in.
-weight = 8
-
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
-date_format = "January 2006"
+date_format = "Jan 2006"
 
 # Experiences.
 #   Add/remove as many `[[experience]]` blocks below as you like.
@@ -19,49 +18,27 @@ date_format = "January 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "PhD Research Assistant"
-  company = "Distributed Digital Music Archives and Libraries"
+  title = "CEO"
+  company = "GenCoin"
   company_url = ""
-  location = "Montréal"
-  date_start = "2017-09-01"
+  location = "California"
+  date_start = "2017-01-01"
   date_end = ""
   description = """
-  Research on Music Information Retrieval topics related with tonal music.
-
-  Also supporting the development of the Optic Music Recognition (OMR) workflow and the Single Interface for Music Score Search and Analysis (SIMSSA) project.
+  Responsibilities include:
+  
+  * Analysing
+  * Modelling
+  * Deploying
   """
 
 [[experience]]
-  title = "MSc Research Assistant"
-  company = "Universitat Pompeu Fabra"
+  title = "Professor"
+  company = "University X"
   company_url = ""
-  location = "Barcelona"
-  date_start = "2016-11-01"
-  date_end = "2017-06-30"
-  description = """
-  Analysis of harmony in Western tonal music.
-  """
-
-[[experience]]
-  title = "Graphics Software Security Engineer"
-  company = "Intel Corporation"
-  company_url = ""
-  location = "Guadalajara"
-  date_start = "2014-10-01"
-  date_end = "2016-08-15"
-  description = """
-  C/C++/Python tool developer for software security analysis.
-  """
-
-[[experience]]
-  title = "Software Engineer"
-  company = "CINVESTAV"
-  company_url = ""
-  location = "Guadalajara"
-  date_start = "2013-08-01"
-  date_end = "2014-09-30"
-  description = """
-  C++ developer
-  """
+  location = "California"
+  date_start = "2016-01-01"
+  date_end = "2016-12-31"
+  description = """Taught electronic engineering and researched semiconductor physics."""
 
 +++

@@ -1,39 +1,13 @@
 +++
-# About/Biography widget.
-widget = "about"
-active = true
-date = 2016-04-20T00:00:00
+# About widget.
+widget = "about"  # See https://sourcethemes.com/academic/docs/page-builder/
+headless = true  # This file represents a page section.
+active = true  # Activate this widget? true/false
+weight = 20  # Order that this section will appear in.
 
-# Order that this section will appear in.
-weight = 5
+title = "Biography"
 
-# List your academic interests.
-[interests]
-  interests = [
-    "Music Information Retrieval",
-    "Artificial Intelligence",
-    "Symbolic Music Analysis",
-    "Music Theory"
-  ]
-
-# List your qualifications (such as academic degrees).
-[[education.courses]]
-  course = "PhD in Music Technology"
-  institution = "McGill University, Montréal"
-  year = 2022
-
-[[education.courses]]
-  course = "MSc in Sound and Music Computing"
-  institution = "Universitat Pompeu Fabra, Barcelona"
-  year = 2017
-
-[[education.courses]]
-  course = "Licenciatura en Informática"
-  institution = "Universidad de Guadalajara, Guadalajara"
-  year = 2012
-
+# Choose the user profile to display
+# This should be the username of a profile in your `content/author/` folder.
+author = "admin"
 +++
-
-# Biography
-
-I am interested in all of the ways in which modern technologies can help us to understand, create, and enjoy music.
