@@ -1,5 +1,5 @@
 +++
-title = "Example Page"
+title = "Overview"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -9,18 +9,9 @@ toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
-linktitle = "Example Page"
-[menu.tutorial]
-  parent = "Example Topic"
+[menu.docs]
+  name = "Overview"
   weight = 1
 +++
 
-In this tutorial, I'll share my top 10 tips for getting started with Academic:
-
-## Tip 1
-
-...
-
-## Tip 2
-
-...
+Reports and documentation for class and personal projects
