@@ -26,8 +26,8 @@ abstract = """
 This project started as a symbolic key detection algorithm. In order to participate in the Music Information Retrieval EXchange (MIREX) key detection task, additional audio processing stages have been included. The user input---whether it is a symbolic or an audio file---is pre-processed to obtain a sequence of pitch classes, which becomes the input of the Hidden Markov Model (HMM). The HMM is divided in two parts, the first part outputs a sequence of temporary keys (i.e., tonicizations) and the second part outputs a main key. Both parts rely on a geometric model of key distance (for transition probabilities) and key-profiles (for emission probabilities). The model has been evaluated in both its symbolic and audio implementations. This project was presented as a poster in the annual meeting of MIREX at the International Society for Music Information Retrieval Conference (ISMIR) in Paris, France.
 """
 
-abstract_short = """
-This project started as a symbolic key detection algorithm. In order to participate in the Music Information Retrieval EXchange (MIREX) key detection task, additional audio processing stages have been included. This project was presented as a poster in the annual meeting of MIREX at the International Society for Music Information Retrieval Conference (ISMIR), in Paris, France.
+summary = """
+Symbolic and audio key estimation algorithm based on Hidden Markov Models. Implemented in C++.
 """
 
 # Is this a selected publication? (true/false)

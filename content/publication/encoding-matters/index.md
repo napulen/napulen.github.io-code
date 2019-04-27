@@ -27,7 +27,7 @@ In this paper, we discuss how different encodings in symbolic music files can ha
 We present two scenarios in which encoding discrepancies may be introduced. In the first scenario, they have been introduced during the encoding of the symbolic music file by either the music notation software or the human encoder. The discrepancies introduced in this scenario are typically difficult to notice because they are visually identical to an accurate encoding. In the second scenario, the discrepancies have been introduced during the translation of the original file into other symbolic formats. In this scenario, the discrepancies may be related to propagating errors in the original encoding or to an erroneous translation of certain attributes of the musical content. Finally, we discuss the possibility of using the examples provided here for the mitigation of some of these discrepancies in the future.
 """
 
-abstract_short = """
+summary = """
 Examples of encoding discrepancies that have been introduced either during the encoding of the symbolic music files or during the translation of the original file into other symbolic formats.
 """
 

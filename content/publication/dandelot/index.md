@@ -1,6 +1,6 @@
 +++
 title = "Dandelot - Reading Music as a Game"
-date = 2013-07-01T00:00:00
+date = 2019-04-13T00:00:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["admin", "Ichiro Fujinaga"]
@@ -20,7 +20,7 @@ publication_types = ["1"]
 
 # Publication name and optional abbreviated version.
 publication = "In Learning Music Through Play in Out-of-School Context"
-publication_short = "In LMUSTP"
+publication_short = "In LMUSTP 2019"
 
 # Abstract.
 abstract = "*Dandelot* is a game in which the players need to read a musical staff using different clefs in order to win. The game is designed to be useful for beginners (non-musicians) and advanced players (trained musicians) by controlling, through an AI agent, the range (staff position), frequency (how often new ones appear), and required clef of the notes in the sequence. The main interface of Dandelot consists of a staff, a sequence of notes coming from the right to the left side of the screen, and three clefs controlled by the player (i.e., Treble, Bass, and Alto). The notes and clefs are animated and have different colors. In order to play, users select a clef that matches the color of the leftmost note of the sequence and spell the note using one of seven buttons (A-G). If the player succeeds, an animated projectile flies from the clef to the note, destroying it. The same process is repeated for each of the incoming notes. There is no penalty for misspelling a note, however, a *note streak* multiplier will increase the points earned for each destroyed note, making players who do not make mistakes earn higher scores in the game. The game ends once one of the notes reaches the left side of the screen. The game will be available to play by the delegates as a desktop application, using the keyboard as the input controller. *Dandelot* is inspired by the *Manuel pratique pour l'etude des cles*, written by Georges Dandelot, however, the sequences of notes in the game are not taken from the manual but generated through an AI agent. Dandelot intends to provide a platform that teaches non-musicians how to read music and, at the same time, allows expert musicians to master their skill for reading different musical clefs."
@@ -78,7 +78,3 @@ url_source = ""
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
   focal_point = "Center"
 +++
-
-# {{% alert note %}}
-# Supplementary notes can be added here, including [code and math](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
-# {{% /alert %}}

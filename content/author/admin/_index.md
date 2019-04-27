@@ -16,16 +16,18 @@ role = "PhD Student in Music Technology"
 organizations = [ { name = "McGill University", url = "https://www.mcgill.ca/music/" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "I am interested in all of the ways in which modern technologies can help us to understand, create, and enjoy music."
+bio = "I am interested in all of the ways in which modern technologies can help us to learn, understand, create, and enjoy music."
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = ""
 
 # List (academic) interests or hobbies
 interests = [
-  "Music-based Games",
+  "Serious Music-Based Games",
   "Music Information Retrieval",
-  "Machine Learning"
+  "Symbolic Music Analysis",
+  "Audio Signal Processing",
+  "Deep Learning"
 ]
 
 # Organizational groups that you belong to (for People widget)
